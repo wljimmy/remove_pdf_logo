@@ -1,4 +1,5 @@
-# PDF Logo 删除工具
+[English](#english) 
+# PDF Logo 删除工具（ PDF Logo Remover Tool ）
 
 一个简单易用的 macOS 脚本，用于从 PDF 文件中提取并删除 Logo 图像。通过交互式界面，您可以轻松选择要删除的 Logo，无需复杂的命令行操作。
 
@@ -164,3 +165,158 @@ pip3 install pymupdf pillow tqdm
 ## 许可证
 
 本项目采用 MIT 许可证 - 详情见 [LICENSE](LICENSE) 文件。
+
+---
+
+# English
+
+# PDF Logo Remover Tool  
+A simple and easy-to-use macOS script for extracting and removing logo images from PDF files. With an interactive interface, you can easily select the logo to remove without complex command-line operations.
+
+
+## Features  
+- Automatically extract all image components from PDF  
+- Merge duplicate images for easy logo identification  
+- Interactive interface to select logos for removal  
+- Generate a new PDF file without logos  
+- Save extracted images for reference  
+- Colorful prompt messages for user-friendly interaction  
+
+
+## Installation Steps  
+### 1. Install Dependencies  
+Ensure Python 3 and the following libraries are installed on your system:  
+```bash  
+pip3 install pymupdf pillow tqdm  
+```  
+
+### 2. Download Scripts  
+Download the following two files to the same directory:  
+- `remove_pdf_logo.command` - Main script file  
+- `pdf_logo_remover.py` - Python execution file  
+
+
+## Usage Guide  
+### Method 1: Run by Double-Clicking (Recommended)  
+1. Right-click the `remove_pdf_logo.command` file  
+2. Select "Open With" → "Terminal"  
+3. Follow the terminal prompts to enter parameters  
+
+### Method 2: Run via Terminal Command  
+1. Open Terminal  
+2. Navigate to the script directory:  
+   ```bash  
+   cd /path/to/script/directory  
+   ```  
+3. Grant execution permissions:  
+   ```bash  
+   chmod +x remove_pdf_logo.command  
+   ```  
+4. Run the script:  
+   ```bash  
+   ./remove_pdf_logo.command  
+   ```  
+
+### Interactive Workflow  
+1. **Enter PDF File Path**:  
+   - Drag and drop the PDF file into the terminal window to auto-fill the path  
+
+2. **Enter Output File Path**:  
+   - Default: Original filename with `_no_logo` suffix (e.g., `input_no_logo.pdf`)  
+
+3. **Enter Image Save Directory**:  
+   - Script will save extracted images to this directory (default: `./pdf_images`)  
+
+4. **Select Logo to Remove**:  
+   - View saved images in the specified directory  
+   - Enter the corresponding number to select the logo (supports multiple selections separated by commas)  
+
+5. **Confirm Operation**:  
+   - Type `y` to confirm removal. The script will process the PDF and generate the result file  
+
+
+## Example Run  
+```  
+=== PDF Logo Remover Tool ===  
+
+Please enter the PDF file path: /Users/yourname/Documents/sample.pdf  
+Please enter the output file path (default: /Users/yourname/Documents/sample_no_logo.pdf):  
+Please enter the directory to save extracted images (default: ./pdf_images):  
+
+Parameter Confirmation:  
+  Input PDF: /Users/yourname/Documents/sample.pdf  
+  Output PDF: /Users/yourname/Documents/sample_no_logo.pdf  
+  Image Directory: ./pdf_images  
+
+Proceed? (y/n): y  
+
+Processing PDF...  
+
+Extracted image components (duplicates merged):  
+1. Image #123 (200x100px, 128.5KB)  
+   Occurrences: 3, Pages: 1,3,5  
+   Save Path: ./pdf_images/image_1.png  
+--------------------------------------------------  
+2. Image #456 (150x50px, 45.2KB)  
+   Occurrences: 1, Page: 2  
+   Save Path: ./pdf_images/image_2.png  
+--------------------------------------------------  
+
+Enter the image number(s) to remove as logo (e.g., 1,3,5), type 'all' to remove all, or 'q' to quit: 1  
+
+You have selected the following 1 image component(s) as logo:  
+1. Image #123 (200x100px), Occurrences: 3, Pages: 1,3,5  
+
+Confirm removal from PDF? (y/n): y  
+
+Removing 1 image component(s) from PDF...  
+[███████████████████████████████████████] 100% | Page Progress | 5/5 [00:05<00:00, 1.02s/page]  
+
+Saving modified PDF...  
+
+Process completed!  
+- Input File: /Users/yourname/Documents/sample.pdf  
+- Output File: /Users/yourname/Documents/sample_no_logo.pdf  
+- Images Removed: 1/1 successfully  
+
+Open image save directory? (y/n): y  
+```  
+
+
+## Frequently Asked Questions  
+### 1. Script fails to run with permission denied error  
+Grant execution permissions again:  
+```bash  
+chmod +x remove_pdf_logo.command  
+```  
+
+### 2. macOS says "cannot verify the application"  
+This is macOS security protection for unsigned apps. You can:  
+1. Go to "System Preferences" → "Security & Privacy"  
+2. Click "Open Anyway" under the "General" tab  
+3. Try running the script again  
+
+Or bypass verification via terminal:  
+```bash  
+sudo xattr -rd com.apple.quarantine /path/to/remove_pdf_logo.command  
+```  
+
+### 3. Missing dependency library error  
+Ensure all required Python libraries are installed:  
+```bash  
+pip3 install pymupdf pillow tqdm  
+```  
+
+### 4. Logo not found in extracted images  
+Possible reasons:  
+- Logo is a vector graphic (not a bitmap image)  
+- Logo is embedded as text  
+- Logo is merged with other content in a single image  
+
+
+## Technical Support  
+For any issues or suggestions, contact the author: wljimmy@hotmail.com  
+
+
+## License  
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
